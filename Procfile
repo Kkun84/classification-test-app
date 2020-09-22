@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath backend api.main:app
+web: gunicorn -b :$PORT_API api.main:app & npm start

@@ -48,14 +48,7 @@ const Predict: React.FC<Props> = ({ file }) => {
     [data]
   );
 
-  return (
-    <div>
-      <div>{memo}</div>
-    </div>
-  );
-
-  // return (
-  // );
+  return <>{memo}</>;
 };
 
 export default Predict;

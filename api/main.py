@@ -4,8 +4,7 @@ from flask import Flask, request, jsonify
 from api.torch_utils import transform_image, get_prediction
 
 
-# app = Flask(__name__)
-app = Flask(__name__, static_folder="build/static", static_url_path="/")
+app = Flask(__name__)
 
 
 with open("api/imagenet_class_index.json", mode="r") as f:
@@ -20,7 +19,8 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENTIONS
 
 
-def main_post():
+@app.route("/api/predict", methods=["POST"])
+def predict():
     file = request.files.get("image")
     if file is None or file.filename == "":
         return jsonify(dict(error="no file"))
@@ -39,17 +39,6 @@ def main_post():
         return jsonify(data)
     except:
         return jsonify(data)
-
-
-@app.route("/api/predict", methods=["POST"])
-def predict():
-    if request.method == "POST":
-        return main_post()
-
-
-@app.route("/")
-def index():
-    return app.send_static_file("index.html")
 
 
 if __name__ == "__main__":
