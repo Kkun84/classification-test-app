@@ -1,1 +1,1 @@
-web: npm start
+web: gunicorn -b :$PORT_API api.main:app & node server.js
