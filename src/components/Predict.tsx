@@ -4,6 +4,7 @@ import axios from 'axios';
 type Props = {
   file: File;
 };
+
 type Data = {
   probability: number;
   prediction: string;
