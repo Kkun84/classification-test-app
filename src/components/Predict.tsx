@@ -18,12 +18,13 @@ const Predict: React.FC<Props> = ({ file }) => {
     const formData = new FormData();
     formData.append('image', file);
     axios
-      .post('https://flask-pytorch-test.herokuapp.com/predict', formData)
+      .post('https://pytorch-flask-test.herokuapp.com/predict', formData)
       .then((response) => {
         setData({ ...response.data, error: '' });
       })
       .catch((error) => {
         console.error(error);
+        setData({ probability: 0, prediction: '', error: 'Network error.' });
       })
       .finally();
   };
