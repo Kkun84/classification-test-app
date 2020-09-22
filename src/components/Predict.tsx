@@ -11,11 +11,7 @@ type Data = {
 };
 
 const Predict: React.FC<Props> = ({ file }) => {
-  const [data, setData] = React.useState<Data>({
-    probability: 0,
-    prediction: '',
-    error: '',
-  });
+  const [data, setData] = React.useState<Data | null>(null);
 
   const predict = (file: File) => {
     const formData = new FormData();
@@ -37,7 +33,9 @@ const Predict: React.FC<Props> = ({ file }) => {
 
   const memo = useMemo(
     () =>
-      data.error === '' ? (
+      data === null ? (
+        <></>
+      ) : data.error === '' ? (
         <>
           <div>クラス:{data.prediction}</div>
           <div>確率:{data.probability.toFixed(2)}%</div>
