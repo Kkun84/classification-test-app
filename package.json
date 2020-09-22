@@ -39,5 +39,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:10001"
+  "proxy": "http://localhost:10001",
+  "engines": {
+    "node": "12.x"
+  }
 }
