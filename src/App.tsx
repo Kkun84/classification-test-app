@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
+import FileInput from './components/FileInput';
+import Predict from './components/Predict';
+import RenderImage from './components/RenderImage';
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+  const [file, setFile] = React.useState<File | null>(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <FileInput setFile={setFile} />
+      {file ? <Predict file={file} /> : <div></div>}
+      {file ? <RenderImage file={file} /> : <div></div>}
     </div>
   );
-}
+};
 
 export default App;
