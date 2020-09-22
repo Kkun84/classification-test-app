@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useMemo, useEffect } from 'react';
 
 type Props = {
   file: File;
@@ -9,7 +9,7 @@ const RenderImage: React.FC<Props> = ({ file }) => {
     const img = document.getElementById('myImage');
     if (img != null) {
       const reader = new FileReader();
-      reader.onload = function () {
+      reader.onload = () => {
         if (typeof reader.result === 'string')
           img.setAttribute('src', reader.result);
       };
@@ -17,11 +17,9 @@ const RenderImage: React.FC<Props> = ({ file }) => {
     }
   }, [file]);
 
-  return (
-    <div>
-      <img id='myImage' alt={file.name} />
-    </div>
-  );
+  const memo = useMemo(() => <img id='myImage' alt={file.name} />, [file]);
+
+  return memo;
 };
 
 export default RenderImage;

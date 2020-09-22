@@ -17,9 +17,9 @@ const Predict: React.FC<Props> = ({ file }) => {
     const formData = new FormData();
     formData.append('image', file);
     axios
-      .post('/api/predict', formData)
+      .post('https://flask-pytorch-test.herokuapp.com/predict', formData)
       .then((response) => {
-        setData(response.data);
+        setData({ ...response.data, error: '' });
       })
       .catch((error) => {
         console.error(error);
@@ -33,7 +33,7 @@ const Predict: React.FC<Props> = ({ file }) => {
 
   const memo = useMemo(
     () =>
-      data === null ? (
+      data == null ? (
         <></>
       ) : data.error === '' ? (
         <>
