@@ -15,6 +15,7 @@ const Predict: React.FC<Props> = ({ file }) => {
   const [data, setData] = React.useState<Data | null>(null);
 
   const predict = (file: File) => {
+    setData(null);
     const formData = new FormData();
     formData.append('image', file);
     axios
